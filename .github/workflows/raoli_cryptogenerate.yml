@@ -30,4 +30,4 @@ jobs:
       with:
         app-name: 'cryptogenerate'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e0cf7b65af4e408fbdfff499dcfa1202 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e20eb2431f0349a584f0982433096024 }}
