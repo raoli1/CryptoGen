@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>CryptoGen</title>
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .container-fluid{
+        height: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .row{
+        height: 100%;
+    }
+    .box{
+        border-style: solid;
+        border-color: #d9d9d9;
+    }
+    .btn-secondary{
+        background-color: white;
+    }
+    .btn{
+        text-align: left;
+    }
+    .btn-outline-dark{
+        border-color: white;
+    }
+    .navbar{
+        overflow-wrap: break-word;
+    }
+    .textbox{
+        border-style: none;
+        width: 100%;
+        font-size: large;
+        line-height: 1em;
+        padding: 2%;
+        height: 100%;
+    }
+    #bake{
+        text-align: center;
+        background-color: red;
+        color: white;
+    }
+    .marginzero{
+        margin: 0;
+    }
+    .paddingzero{
+        padding: 0%;
+    }
+    #message{
+        height: 34.5%;
+    }
+    .halfheight{
+        height: 42.7%;
+    }
+    .output{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .smallBox{
+        height: 14%;
+        width: 90%;
+    }
+    .menu{
+        overflow: auto;
+        height: 100%;
+    }
+    </style>
+    </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 paddingzero box menu">
+                <nav class="navbar navbar-light bg-light">
+                    <span class="navbar-brand mb-0 h1">Menu</span>
+                </nav>
+                <button type="button" class="btn btn-outline-dark btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#collapse1,#collapse2,#collapse3,#collapse4,#collapse5,#collapse6,#collapse7,#collapse8" aria-expanded="false" aria-controls="collapse1">Symmetric Key Encryption</button>
+                <button id="collapse1" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="AES-OFB" data-toggle="tooltip" data-placement="right" title="AES - OFB">AES - OFB</button>
+                <button id="collapse2" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="AES-CBC" data-toggle="tooltip" data-placement="right" title="AES - CBC">AES - CBC</button>
+                <button id="collapse3" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="AES-CFB" data-toggle="tooltip" data-placement="right" title="AES - CFB">AES - CFB</button>
+                <button id="collapse4" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="AES-CTR" data-toggle="tooltip" data-placement="right" title="AES - CTR">AES - CTR</button>
+                <button id="collapse5" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="TripleDES-OFB" data-toggle="tooltip" data-placement="right" title="TripleDES - OFB">TripleDES - OFB</button>
+                <button id="collapse6" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="TripleDES-CBC" data-toggle="tooltip" data-placement="right" title="TripleDES - CBC">TripleDES - CBC</button>
+                <button id="collapse7" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="TripleDES-CFB" data-toggle="tooltip" data-placement="right" title="TripleDES - CFB">TripleDES - CFB</button>
+                <button id="collapse8" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Symmetric" draggable="true" value="TripleDES-CTR" data-toggle="tooltip" data-placement="right" title="TripleDES - CTR">TripleDES - CTR</button>
+                <button type="button" class="btn btn-outline-dark btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#collapse9,#collapse10" aria-expanded="false" aria-controls="collapse6">Asymmetric key Encryption</button>
+                <button id="collapse9" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Asymmetric" draggable="true" value="OEAP+RSA" data-toggle="tooltip" data-placement="right" title="OEAP + RSA">OEAP + RSA</button>
+                <button id="collapse10" type="button" class="collapse btn btn-outline-dark btn btn-secondary btn-lg btn-block Asymmetric" draggable="true" value="El-Gamal" data-toggle="tooltip" data-placement="right" title="El-Gamal">El-Gamal</button>
+            </div>
+            <div class="col-4 paddingzero box">
+                <nav class="navbar navbar-light bg-light">
+                    <span class="navbar-brand mb-0 h1">Encryption Scheme</span>
+                </nav>
+                <div id="dropZone" class="halfheight"></div>
+                <nav class="navbar navbar-light bg-light">
+                    <span class="navbar-brand mb-0 h1">Input</span>
+                </nav>
+                <div id ="message" class="row marginzero paddingzero">
+                    <textarea id ="textbox1" class="textbox" name="text" placeholder="Type Message Here ..." required></textarea>
+                </div>
+                <nav class="navbar navbar-light bg-light">
+                    <button id="bake" type="button" class="btn btn-outline-dark btn btn-secondary btn-lg btn-block">Go</button>
+                </nav>
+            </div>
+            <div class="col-3 paddingzero box">
+                <nav class="navbar navbar-light bg-light">
+                    <span class="navbar-brand mb-0 h1">Sender</span>
+                </nav>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Asymmetric Key</span>
+                    <svg  id ="download1" class="bi bi-download output1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output1" class="output smallBox" name="text" disabled></textarea>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Encrypted Asymmetric Key</span>
+                    <svg id ="download2" class="bi bi-download output2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output2" class="output smallBox" name="text" disabled></textarea>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Encrypted Text</span>
+                    <svg  id ="download3" class="bi bi-download output3" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output3" class="output smallBox" name="text" disabled></textarea>
+            </div>
+            <div class="col-3 paddingzero box">
+                <nav class="navbar navbar-light bg-light">
+                    <span class="navbar-brand mb-0 h1">Receiver</span>
+                </nav>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Private Key</span>
+                    <svg id ="download4" class="bi bi-download output4" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output4" class="output smallBox" name="text" disabled></textarea>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Public Key</span>
+                    <svg id ="download5" class="bi bi-download output5" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button" onclick="saveTextAsFile()">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output5" class="output smallBox" name="text" disabled></textarea>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Decrypted Key</span>
+                    <svg id ="download6" class="bi bi-download output6" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button" onclick="saveTextAsFile()">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output6" class="output smallBox" name="text" disabled></textarea>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1 output">Decrypted Text</span>
+                    <svg id ="download7" class="bi bi-download output7" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" type="button" onclick="saveTextAsFile()">
+                        <path fill-rule="evenodd" d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z" clip-rule="evenodd"/>
+                    </svg>
+                </nav>
+                <textarea id ="output7" class="output smallBox" name="text" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- Loader script for chatbot -->
+    <script src="https://lex-web-ui-codebuilddeploy-n89iw5n4c-webappbucket-gi6kchcrmg5l.s3.us-east-1.amazonaws.com/lex-web-ui-loader.min.js"></script>
+    <script>
+      var loaderOpts = {
+        baseUrl: 'https://lex-web-ui-codebuilddeploy-n89iw5n4c-webappbucket-gi6kchcrmg5l.s3.us-east-1.amazonaws.com/',
+        shouldLoadMinDeps: true
+      };
+      var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+      loader.load()
+        .catch(function (error) { console.error(error); });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("dragstart", function(event) { 
+                event.dataTransfer.setData("button", event.target.id); 
+            }); 
+    document.addEventListener("dragover", function(event) { 
+                event.preventDefault(); 
+            }); 
+    document.addEventListener("drop", function(event) { 
+                event.preventDefault(); 
+                if (event.target.id == "dropZone") { 
+                    var data = event.dataTransfer.getData("button"); 
+                    var nodeCopy = document.getElementById(data).cloneNode(true);
+                    nodeCopy.id = "new"+data; 
+                    var childList = document.getElementById("dropZone").children;
+                    var hasdragged = document.getElementById(nodeCopy.id);
+                    if(childList.length < 2){
+                        if(childList.length == 0){
+                            event.target.appendChild(nodeCopy);
+                        }
+                        if(childList.length == 1){
+                            if((nodeCopy.classList.contains("Symmetric") && !childList[0].classList.contains("Symmetric")) || (nodeCopy.classList.contains("Asymmetric") && !childList[0].classList.contains("Asymmetric"))){
+                                if(hasdragged ==null){
+                                    event.target.appendChild(nodeCopy);
+                                }
+
+                            }
+                        }
+                    }
+                } 
+                if (event.target.id != "dropZone") { 
+                    var data = event.dataTransfer.getData("button"); 
+                    if(data.includes("newcollapse")){
+                       var removedButton = document.getElementById(data);
+                        removedButton.remove();
+                    }
+                } 
+
+            }); 
+    </script>
+    <script>
+        document.addEventListener("click", function(event) {
+        var buttonId = event.target.id;
+        if(buttonId.includes("download")){
+            var textAreaId = "output"+buttonId.slice(-1);
+            var textToWrite = document.getElementById(textAreaId).innerHTML;
+            var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+            var fileNameToSaveAs = textAreaId+".txt";
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "Download File";
+            if (window.webkitURL != null)
+                {
+                // Chrome allows the link to be clicked
+                // without actually adding it to the DOM.
+                downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+                }
+            else
+                {
+                // Firefox requires the link to be added to the DOM
+                // before it can be clicked.
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.onclick = destroyClickedElement;
+                downloadLink.style.display = "none";
+                document.body.appendChild(downloadLink);
+                }
+            downloadLink.click();
+            }
+        });
+        function destroyClickedElement(event)
+        {
+            document.body.removeChild(event.target);
+        }
+    </script>
+    <script>
+        $("#bake").click(function(event){
+        
+        var childList = document.getElementById("dropZone").children;
+        if(childList.length == 2){
+            var Symmetric = "";
+            var Asymmetric = "";
+            for(i=0; i<2; i++){
+                if(childList[i].classList.contains("Symmetric")){
+                    Symmetric = childList[i].value
+                }
+                if(childList[i].classList.contains("Asymmetric")){
+                    Asymmetric = childList[i].value
+                }
+            }
+            var message = document.getElementById('textbox1').value
+            $.ajax({
+                url: "/",
+                type: "POST",
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify({'message': message, 'Symmetric': Symmetric, 'Asymmetric': Asymmetric}),
+                dataType:"json",
+                success: function (data) {
+                    $("#output1").html(data["AsymmetricKey"])
+                    $("#output2").html(data["EncryptedAsymmetricKey"])
+                    $("#output3").html(data["Encrypted_Text"])
+                    $("#output4").html(data["PrivateKey"])
+                    $("#output5").html(data["PublicKey"])
+                    $("#output6").html(data["DecryptedKey"])
+                    $("#output7").html(data["DecryptedText"])
+                }
+            });
+        }
+        else if(childList.length == 1){
+            if(childList[0].classList.contains("Symmetric")){
+                    alert("Please Choose an Asymmetric Encryption Scheme.");
+                }
+            else if(childList[0].classList.contains("Asymmetric")){
+                alert("Please Choose a Symmetric Encryption Scheme.");
+            }
+        }
+        else if(childList.length == 0){
+            alert("Please Choose a Symmetric Encryption Scheme and an Asymmetric Encryption Scheme.");
+        }
+    });
+   
+    </script>
+  </body>
+</html>
